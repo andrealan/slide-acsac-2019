@@ -9,7 +9,7 @@
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5} 
-\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{mauve}{rgb}{0.58,0,0.82} 
 
 \lstset{frame=tb,
 	language=Java,
@@ -53,25 +53,116 @@ Short-distance Channels}
 
 \section{Introduction}
 \begin{frame}[fragile]{Context}
-text....
+  \begin{itemize}
+
+  \item Cross-device communications allow nearby devices to directly
+    communicate bypassing cellular base stations (BSs) or access
+    points (APs) (e.g. {\bf spectral efficiency improvement, energy
+      saving, and delay reduction}, etc.)
+
+  \item Without the need for infrastructure, {\bf such a technology
+      enables mobile users (e.g., Android) to instantly share
+      information (e.g., pictures and videos)}
+
+  \item Such technology is also predominat in {\bf IoT environment}
+    where a mobile device is direct connected to the embedded system.
+
+   \end{itemize}
+
+
+  
 \end{frame}
 
 \begin{frame}[fragile]{Current Solutions}
-text....
+  \begin{itemize}
+
+  \item Several solutions exist for securing cross-device
+    communication.  In the Android environment, they allow
+    {\bf authentication of devices and communication channels}.
+
+  \item Others solutions {\bf restricts apps’ access to external
+      resources, such as Bluetooth, SMS and NFC}, by defining new
+    SEAndroid types to represent the resources.
+
+  \item Moroever such {\bf solutions are not able to address several
+      communication channels such as: SMS, Audio, Wi-Fi and NFC} due
+    to of missing important information for the detection purpose.
+
+  \end{itemize} 
+
+  
 \end{frame}
 
-\begin{frame}[fragile]{Problem Statement \& Contributions}
-text....
+\begin{frame}[fragile]{Contributions}
+
+
+ \begin{itemize}
+  
+ %\item This problem is due to the fact that the authentication between
+ %  apps is missing. {\bf We name this security issue cross-device
+ %    app-to-app communication hijacking, or CATCH}.
+
+ \item We identify a security problem called {\bf cross-device
+     app-to-app communication hijacking (CATCH)}, which commonly
+   exists in Android apps that use short-distance channels, and
+   afflicts all the tested Android version.
+
+ \item We provide a solution to the CATCH problem by {\bf designing
+     and developing an authentication scheme detector} that analyzes
+   Android apps to discover potential vulnerabilities
+
+ \item {\bf Validate the results of our system on Android apps} with
+   manual analysis, and test its resilience in detecting the
+   authentication scheme.
+
+\end{itemize}
+  
 \end{frame}
 
 
 \section{Cross Device Authentication Scheme}
 \begin{frame}[fragile]{Cross-device Authentication Scheme}
-text....		  
+
+  %\begin{itemize}
+
+  %\item Currently, most cross-device, peer-to-peer communications
+  %  channels are authenticated by using an {\bf out-of-band scheme}.
+
+  %\end{itemize}
+   
+  \begin{figure}[bhp]
+    \centering
+	\includegraphics[width=80mm]{img/2-background}
+     \end{figure}
+
+     \begin{figure}[bhp]
+    \centering
+	\includegraphics[width=80mm]{img/2-malware}
+     \end{figure}
+  
+ 
+  
 \end{frame}
 
 \begin{frame}[fragile]{Threat Model \& Attack}
-text.....	  
+
+  \begin{itemize}
+
+
+  \item The attacker is able to install a malicious app on the
+    mobile's victim phone.
+
+  \item The malicious app can therefore craft custom messages to send
+    to the other device, which are displayed as if they were sent from
+    the original app.
+
+  \item Depending on the particular context, there are some scenarios
+    in which the attack can become very dangerous: {\bf Phishing,
+      Malware delivery, Exploitation}.
+
+  \end{itemize}
+
+  
 \end{frame}
 
 \section{Approach Overview}
