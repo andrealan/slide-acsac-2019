@@ -6,7 +6,7 @@
 \usepackage{booktabs}
 \usepackage[scale=2]{ccicons}
 \usepackage{listings}
-
+ 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5} 
 \definecolor{mauve}{rgb}{0.58,0,0.82} 
@@ -167,20 +167,95 @@ Short-distance Channels}
 
 \section{Approach Overview}
 \begin{frame}[fragile]{Challenges}
-text.....		
+
+  \begin{itemize}
+
+  \item We need to define a {\bf generic scheme that captures the es-
+      sential logic of app-to-app authentication}.
+
+  \item We need to define a strategy for differentiating between an
+    if-statement that does not operate on security critical data and
+    an {\bf if-statement that is a part of the authentication scheme}.
+
+  \item Additionally, the authentication scheme {\bf can be
+      implemented in several ways according to the developer
+      experience}. This adds an additional layer of difficulty for our
+      analysis.
+
+  \end{itemize}
+  
 \end{frame}
 
-\begin{frame}[fragile]{Boundary Area: Entry \& Exit Points}
-text.....		
+\begin{frame}[fragile]{Authentication Scheme Definitions}
+
+  \begin{itemize}
+
+  \item We define a {\bf communication} in our model as some exchange
+    of data from A1 to A2, beginning when A2 reads the data from the
+    communication channel.
+
+  \item We define a {\bf use} of the data as any operation whose
+    result depends on the data itself.
+
+  \item We define an {\bf authenticated use of the data} as any
+    instruction that needs to be authenticated before access to the
+    data.
+      
+  \end{itemize}
+
+  
 \end{frame}
 
 \begin{frame}[fragile]{Detection Strategy}
-text.....		
+
+  We define two main check points for our algorithm:
+  \begin{itemize}
+
+  \item An {\bf entry point} is an instruction in the code that
+      indicates the start of the communication over the analyzed
+      channel (e.g., data receiving)
+
+    \item An {\bf exit point} is represented by the first
+      authenticated use of the data coming from the monitored channel.
+
+   \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Detection Algorithm}
+
+ \begin{figure}[bhp]
+    \centering
+	\includegraphics[width=65mm]{img/algo}
+     \end{figure}
+  
 \end{frame}
 
 \section{Technical Details}
-\begin{frame}[fragile]{Technical Details}
-text.....		
+\begin{frame}[fragile]{Technical Details} 
+
+\begin{itemize}
+
+\item Our system is composed of three main components: (1) {\bf Graphs
+  Builder}, (2) {\bf Path Finder} and (3) {\bf App-to-app Authentication
+  Finder}. 
+
+\item (1) builds an inter-component control flow graph {\bf (ICFG)}
+  and intercomponent data flow graph of the whole app. Finally, the
+  framework builds a data dependency graph (DDG) on top the {\bf
+    IDFG}.
+
+\item (2) The Path Finder component traverses the CFG received from
+  Graphs Builder, and {\bf marks entry points for the analyzed channel}
+  based on a predefined list of method signatures.
+ 
+\item (3) App-to-app Authentication Finder applies {\bf further
+    checks} to the paths received from Path Finder, in order {\bf to
+    exclude false positive} results by recognizing checks against
+  constant values.
+ 
+
+\end{itemize}
 \end{frame}
 
 \section{Experimental Evaluation}
