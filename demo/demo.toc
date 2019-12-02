@@ -3,5 +3,5 @@
 \beamer@sectionintoc {3}{Approach Overview}{10}{0}{3}
 \beamer@sectionintoc {4}{Experimental Evaluation}{16}{0}{4}
 \beamer@sectionintoc {5}{Case Studies}{22}{0}{5}
-\beamer@sectionintoc {6}{Discussion}{25}{0}{6}
-\beamer@sectionintoc {7}{Conclusion \& Future works}{27}{0}{7}
+\beamer@sectionintoc {6}{Limitations}{24}{0}{6}
+\beamer@sectionintoc {7}{Conclusion}{26}{0}{7}

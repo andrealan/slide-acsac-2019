@@ -1,2 +1,16 @@
 \frametitle{Conclusion}
-text.....		
+
+  \begin{itemize}
+
+  \item We have shown the extension and potential impact of {\bf CATCH
+      vulnerabilities in Android apps}, providing a threat model and
+    specific definitions for the problem,
+
+  \item We design an automated system for APK analysis, is a first
+    line of defense against human error, and could be used to identify
+    vulnerable apps.
+
+  \item We test the efficacy and efficiency of our system against a
+    large number of android apps.
+
+\end{itemize}

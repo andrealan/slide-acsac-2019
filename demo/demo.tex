@@ -1,5 +1,5 @@
 \documentclass[10pt]{beamer}
-
+ 
 \usetheme{metropolis}
 \usepackage{appendixnumberbeamer}
 
@@ -390,32 +390,67 @@ Short-distance Channels}
 \end{frame}
 
 
-
-
-
-
-
-
-
-
 \section{Case Studies}
-\begin{frame}[fragile]{Data injection on BluetoothChat}
-text.....		
+\begin{frame}[fragile]{Data injection on BluetoothChat and Wifi-Direct}
+
+  \begin{itemize}
+
+  \item We implement the attack vector against two real applications:
+    (1) BluetoothChat that use Bluetooth technology, (2) Filesharing
+    on Wi-Fi Direct.
+
+  \item Two preliminaries requirements: (1) the malicious app needs to
+    recognize the {\bf presence of the target application}. (2) the
+    malicious app needs to detect when the target {\bf application is
+      opened and run.}
+
+  \item If the attacker has satisfied the previous two requirements
+    the attack can be performed successfully.
+
+  \end{itemize}
+  
+  
 \end{frame}
 
-\begin{frame}[fragile]{Data injection on Wi-Fi Direct +}
-text.....		
-\end{frame}
 
-
-\section{Discussion}
+\section{Limitations}
 \begin{frame}[fragile]{Impact \& Limitations}
-text.....		
+
+\begin{itemize}
+
+\item Our framework is not able to handle particular intra-component
+  and inter-component transitions, such as ones performed with {\bf
+    reflection}, and it cannot correctly {\bf model concurrency}.
+
+\item In case of authentication, we {\bf expect to see controls on
+    data read from the channel immediately after a read operation},
+  following our authentication model.
+
+\item We manually analyzed {\bf 20 Android apps from 662 dataset apps}
+  and we check whether threads functions defined in the apps include
+  any authentication scheme ({\bf false negative results}).
+
+\end{itemize}
+
 \end{frame}
 
-\section{Conclusion \& Future works}
+\section{Conclusion}
 \begin{frame}[fragile]{Conclusion}
-text.....		
+  
+  \begin{itemize}
+    
+  \item We have shown the extension and potential impact of {\bf CATCH
+      vulnerabilities in Android apps}, providing a threat model and
+    specific definitions for the problem,
+
+  \item We design an automated system for APK analysis, is a first
+    line of defense against human error, and could be used to identify
+    vulnerable apps.
+
+  \item We test the efficacy and efficiency of our system against a
+    large number of android apps.
+  
+\end{itemize}
 \end{frame}
 
 \section*{Thank you for attention}
