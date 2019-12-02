@@ -3,7 +3,7 @@
 \usetheme{metropolis}
 \usepackage{appendixnumberbeamer}
 
-\usepackage{booktabs}
+\usepackage{booktabs} 
 \usepackage[scale=2]{ccicons}
 \usepackage{listings}
  
@@ -180,7 +180,7 @@ Short-distance Channels}
   \item Additionally, the authentication scheme {\bf can be
       implemented in several ways according to the developer
       experience}. This adds an additional layer of difficulty for our
-      analysis.
+      analysis (e.g., obfuscation).
 
   \end{itemize}
   
@@ -231,45 +231,172 @@ Short-distance Channels}
   
 \end{frame}
 
-\section{Technical Details}
-\begin{frame}[fragile]{Technical Details} 
+\begin{frame}[fragile]{Reducing False Positive}
 
-\begin{itemize}
-
-\item Our system is composed of three main components: (1) {\bf Graphs
-  Builder}, (2) {\bf Path Finder} and (3) {\bf App-to-app Authentication
-  Finder}. 
-
-\item (1) builds an inter-component control flow graph {\bf (ICFG)}
-  and intercomponent data flow graph of the whole app. Finally, the
-  framework builds a data dependency graph (DDG) on top the {\bf
-    IDFG}.
-
-\item (2) The Path Finder component traverses the CFG received from
-  Graphs Builder, and {\bf marks entry points for the analyzed channel}
-  based on a predefined list of method signatures.
- 
-\item (3) App-to-app Authentication Finder applies {\bf further
-    checks} to the paths received from Path Finder, in order {\bf to
-    exclude false positive} results by recognizing checks against
-  constant values.
- 
-
-\end{itemize}
+  Costant Propagation Technique....
+  
 \end{frame}
+
+
+
+%\section{Technical Details}
+%\begin{frame}[fragile]{Technical Details} 
+
+%\begin{itemize}
+
+%\item Our system is composed of three main components: (1) {\bf Graphs
+%  Builder}, (2) {\bf Path Finder} and (3) {\bf App-to-app Authentication
+%  Finder} and it is based on ARGUS-SAF. 
+
+%\item (1) builds an inter-component control flow graph {\bf (ICFG)}
+%  and intercomponent data flow graph of the whole app. Finally, the
+%  framework builds a data dependency graph (DDG) on top the {\bf
+%    IDFG}.
+
+%\item (2) The Path Finder component traverses the CFG received from
+%  Graphs Builder, and {\bf marks entry points for the analyzed channel}
+%  based on a predefined list of method signatures.
+ 
+%\item (3) App-to-app Authentication Finder applies {\bf further
+%    checks} to the paths received from Path Finder, in order {\bf to
+%    exclude false positive} results by recognizing checks against
+%  constant values.
+ 
+
+%\end{itemize}
+%\end{frame}
 
 \section{Experimental Evaluation}
 \begin{frame}[fragile]{Experimental Evaluation}
-text..... Here we put the experiments that we did		
+
+  To test our system we divided the experiments into two main categories:
+  \begin{itemize}
+
+  \item A dataset analysis on APKs retrieved from a research
+    repository, aiming at confirming the efficacy of the
+    algorithm on negative samples;
+
+  \item A targeted analysis on custom apps built by applying code
+    transformation techniques (e.g. obfuscation) for proving that the
+    authentication scheme is correctly detected by our algorithm.
+      
+  \end{itemize}
+	
 \end{frame}
 
 \begin{frame}[fragile]{Dataset Composition}
-text.....		
+
+  \begin{itemize}
+
+  \item We ran tests on a large number of APKs collected from the
+    {\bf Androzoo repository}, crawled from {\bf several Android markets:
+      Google Play, Anzhi and AppChina}.
+
+  \item We started analyzing a total of {\bf 210,425 APKs}, randomly
+    chosen from the Androzoo repository. In order to select the
+    appropriate Bluetooth APKs we applied the {\bf Bluetooth filter}
+    and we obtained a total of {\bf 2,739 APKs}.
+
+  \item Obfuscation filter selected a total of {\bf 942 APKs from the
+      initial set of 2,793}, which means that the majority of the apps
+    in our dataset, almost {\bf 70\%, use ProGuard for code
+      obfuscation}.
+
+  \item we discovered that 704 of the selected apps do not have any
+    entry point for Bluetooth communication in the CFG. we obtained a
+    number of {\bf 238 APKs, suitable for our analysis and
+      evaluation}.
+    
+
+
+  \end{itemize}
+
+  
 \end{frame}
 
-\begin{frame}[fragile]{Results}
-text.....		
+\begin{frame}[fragile]{Dataset Composition}
+
+  We analyzed the composition of our dataset to make sure that we did
+  not run tests on sample/unused/abandoned apps.
+  
+  \begin{itemize}
+    
+  \item We sampled 200 APKs (containing permissions/classes for
+    Bluetooth) from our dataset, and performed a manual analysis by
+    searching them on Google Play.
+    \begin{itemize}
+
+    \item {\bf Game apps}, where Bluetooth is used for playing peer-to-peer
+
+    \item {\bf IoT apps for specific devices}, where Bluetooth is used
+      to send and receive data from the controlled device or sensors
+
+    \item {\bf Business/health apps}, using Bluetooth to send data
+      from smartphone to computer, or again smartphone to device
+    
+  \end{itemize}
+
+  \end{itemize}
+  
 \end{frame}
+
+
+
+\begin{frame}[fragile]{Results}
+
+\begin{itemize}
+
+\item We run our algorithm on {\bf 238 Apps without constant
+    propagation} we obtained 11\% of false positive. With constant
+  propagation enable we reach {\bf 0\% of false positive}.
+
+\item We built a custom app using Bluetooth that use out-of-band
+  authentication and we applied Proguard transformation on the
+  app. {\bf We found that our algorithm correctly predicts the
+    possible presence of authentication}
+
+\item We decided to run our tool on ProGuard-obfuscated APKs from our
+  dataset a total of 662 APKs. {\bf 100\% of the APKs were identified
+    as negative (i.e., not containing authentication) by our tool.}
+  
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Performance Analysis}
+
+  To set up a correct time threshold we need to be sure that the
+  constructed CFG and DDG include the Bluetooth entry points and the
+  authentication checks. we set up three Threshold 30, 60, 120 sec.
+  
+\begin{itemize}
+
+\item For any entry point, we found on average more than {\bf 10,000
+    instructions that are dominated by the entry point and the CFG
+    reachability from a single entry point to any node in the graph}.
+  
+\item The {\bf variation of the results between the three runs is
+    minimal}, that it means that we generally do not miss any
+  important information.
+  
+\item The average time spent for {\bf modeling the APK in Argus-SAF is
+    5 minutes}, while the {\bf average running time of our algorithm}
+  on the generated graphs is {\bf 2 minutes}, giving a total average
+  {\bf time of 7 minutes}.
+  
+\end{itemize}
+
+\end{frame}
+
+
+
+
+
+
+
+
+
 
 \section{Case Studies}
 \begin{frame}[fragile]{Data injection on BluetoothChat}
