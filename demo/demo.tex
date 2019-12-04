@@ -67,60 +67,14 @@ Short-distance Channels}
   \item Such technology is also predominat in {\bf IoT environment}
     where a mobile device is direct connected to the embedded system.
 
-   \end{itemize}
+  \end{itemize}
+
+ \end{frame}
 
 
-  
-\end{frame}
-
-\begin{frame}[fragile]{Current Solutions}
-  \begin{itemize}
-
-  \item Several solutions exist for securing cross-device
-    communication.  In the Android environment, they allow
-    {\bf authentication of devices and communication channels}.
-
-  \item Others solutions {\bf restricts apps’ access to external
-      resources, such as Bluetooth, SMS and NFC}, by defining new
-    SEAndroid types to represent the resources.
-
-  \item Moroever such {\bf solutions are not able to address several
-      communication channels such as: SMS, Audio, Wi-Fi and NFC} due
-    to of missing important information for the detection purpose.
-
-  \end{itemize} 
-
-  
-\end{frame}
-
-\begin{frame}[fragile]{Contributions}
 
 
- \begin{itemize}
-  
- %\item This problem is due to the fact that the authentication between
- %  apps is missing. {\bf We name this security issue cross-device
- %    app-to-app communication hijacking, or CATCH}.
-
- \item We identify a security problem called {\bf cross-device
-     app-to-app communication hijacking (CATCH)}, which commonly
-   exists in Android apps that use short-distance channels, and
-   afflicts all the tested Android version.
-
- \item We provide a solution to the CATCH problem by {\bf designing
-     and developing an authentication scheme detector} that analyzes
-   Android apps to discover potential vulnerabilities
-
- \item {\bf Validate the results of our system on Android apps} with
-   manual analysis, and test its resilience in detecting the
-   authentication scheme.
-
-\end{itemize}
-  
-\end{frame}
-
-
-\section{Cross Device Authentication Scheme}
+ 
 \begin{frame}[fragile]{Cross-device Authentication Scheme}
 
   %\begin{itemize}
@@ -165,7 +119,80 @@ Short-distance Channels}
   
 \end{frame}
 
-\section{Approach Overview}
+\begin{frame}[fragile]{Current Solutions}
+  \begin{itemize}
+
+  \item Several solutions exist for securing cross-device
+    communication.  In the Android environment, they allow
+    {\bf authentication of devices and communication channels}.
+
+  \item Others solutions {\bf restricts apps’ access to external
+      resources, such as Bluetooth, SMS and NFC}, by defining new
+    SEAndroid types to represent the resources.
+
+  \item Moroever such {\bf solutions are not able to address several
+      communication channels such as: SMS, Audio, Wi-Fi and NFC} due
+    to of missing important information for the detection purpose.
+
+  \end{itemize} 
+
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Contributions}
+
+
+ \begin{itemize}
+  
+ %\item This problem is due to the fact that the authentication between
+ %  apps is missing. {\bf We name this security issue cross-device
+ %    app-to-app communication hijacking, or CATCH}.
+
+ \item We identify a security problem called {\bf cross-device
+     app-to-app communication hijacking (CATCH)}, which commonly
+   exists in Android apps that use short-distance channels, and
+   afflicts all the tested Android version.
+
+ \item We provide a solution to the CATCH problem by {\bf designing
+     and developing an authentication scheme detector} that analyzes
+   Android apps to discover potential vulnerabilities
+
+% \item {\bf Validate the results of our system on Android apps} with
+%   manual analysis, and test its resilience in detecting the
+%   authentication scheme.
+
+\end{itemize}
+  
+\end{frame}
+
+
+
+\section{CATCH Detection}
+
+\begin{frame}[fragile]{Authentication Scheme Definitions}
+
+  \begin{itemize}
+
+  \item Such form of authentication proposes authenticated information
+    exchange between devices. {\bf These are called out-of-band,
+      side-channels or location-limited channels (LLCs).}
+
+  \item Then the apps can share a secret and they can start sending
+    data, {\bf using the secret as authenticator}, appending the
+    secret as a form of nounce to protect the messagge.
+
+  \item When the messagge has been received the app needs to perform
+    authentication checks. {\bf These checks must occur before any
+      critical use of the data, otherwise the communication is not
+      authenticated.}
+      
+  \end{itemize}
+
+  
+\end{frame}
+
+
 \begin{frame}[fragile]{Challenges}
 
   \begin{itemize}
@@ -186,25 +213,6 @@ Short-distance Channels}
   
 \end{frame}
 
-\begin{frame}[fragile]{Authentication Scheme Definitions}
-
-  \begin{itemize}
-
-  \item We define a {\bf communication} in our model as some exchange
-    of data from A1 to A2, beginning when A2 reads the data from the
-    communication channel.
-
-  \item We define a {\bf use} of the data as any operation whose
-    result depends on the data itself.
-
-  \item We define an {\bf authenticated use of the data} as any
-    instruction that needs to be authenticated before access to the
-    data.
-      
-  \end{itemize}
-
-  
-\end{frame}
 
 \begin{frame}[fragile]{Detection Strategy}
 
@@ -233,7 +241,22 @@ Short-distance Channels}
 
 \begin{frame}[fragile]{Reducing False Positive}
 
-  Costant Propagation Technique....
+  \begin{itemize}
+
+  \item In our context, the analyzed authentication model must be
+    performed with some sort of {\bf dynamically generated secret}
+    that is usually stored in the dynamic memory (e.g., heap, stack).
+
+  \item By using {\bf constant propagation} we can discard all the
+    conditions that use constant values in their comparison, and {\bf
+      we only consider comparison between the input and dynamic
+      values.}
+
+  \item Constant propagation is a very powerful technique for our
+    analysis, and it helps to reduce the false positives to 0\%
+
+
+  \end{itemize}
   
 \end{frame}
 
