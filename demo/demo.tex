@@ -1,6 +1,6 @@
 \documentclass[10pt]{beamer}
  
-\usetheme{metropolis}
+\usetheme{metropolis} 
 \usepackage{appendixnumberbeamer}
 
 \usepackage{booktabs} 
@@ -35,12 +35,16 @@
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 
 \title{Detecting (Absent) App-to-app Authentication on Cross-device
-Short-distance Channels}
-%\subtitle{A modern beamer theme}
+  Short-distance Channels}
+\subtitle{ACSAC, December 9-13, 2019 San Juan}
 \date{December 13, 2019}
 \author{Stefano Cristalli, Danilo Bruschi, Long Lu, Andrea Lanzi}
-\institute{University of Milan Italy Northeastern University Boston US}
-\titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+\institute{University of Milan Italy, Northeastern University Boston US}
+\titlegraphic{\hfill
+  \includegraphics[height=1.5cm]{unimi.png}
+   \includegraphics[height=1.5cm]{ne2.png}
+ }
+  
 
 \begin{document}
 
@@ -295,20 +299,20 @@ Short-distance Channels}
   To test our system we divided the experiments into two main categories:
   \begin{itemize}
 
-  \item A dataset analysis on APKs retrieved from a research
-    repository, aiming at confirming the efficacy of the
+  \item {\bf A dataset analysis on APKs retrieved from a research
+    repository}, aiming at confirming the efficacy of the
     algorithm on negative samples;
 
-  \item A targeted analysis on custom apps built by applying code
-    transformation techniques (e.g. obfuscation) for proving that the
-    authentication scheme is correctly detected by our algorithm.
+  \item {\bf A targeted analysis on custom apps} built by applying
+    code transformation techniques (e.g. obfuscation) for proving that
+    the authentication scheme is correctly detected by our algorithm.
       
   \end{itemize}
 	
 \end{frame}
 
 \begin{frame}[fragile]{Dataset Composition}
-
+ 
   \begin{itemize}
 
   \item We ran tests on a large number of APKs collected from the
@@ -319,16 +323,17 @@ Short-distance Channels}
     chosen from the Androzoo repository. In order to select the
     appropriate Bluetooth APKs we applied the {\bf Bluetooth filter}
     and we obtained a total of {\bf 2,739 APKs}.
+ 
+  \item We discovered that 704 of the selected apps do not have any
+    entry point for Bluetooth communication in the CFG. we obtained a
+    number of {\bf 238 APKs, suitable for our analysis and
+      evaluation}.
 
-  \item Obfuscation filter selected a total of {\bf 942 APKs from the
+    \item Obfuscation filter selected a total of {\bf 942 APKs from the
       initial set of 2,793}, which means that the majority of the apps
     in our dataset, almost {\bf 70\%, use ProGuard for code
       obfuscation}.
 
-  \item we discovered that 704 of the selected apps do not have any
-    entry point for Bluetooth communication in the CFG. we obtained a
-    number of {\bf 238 APKs, suitable for our analysis and
-      evaluation}.
     
 
 
@@ -370,8 +375,8 @@ Short-distance Channels}
 \begin{itemize}
 
 \item We run our algorithm on {\bf 238 Apps without constant
-    propagation} we obtained 11\% of false positive. With constant
-  propagation enable we reach {\bf 0\% of false positive}.
+    propagation} we obtained {\bf 11\% of false positive}. With
+  constant propagation enable we reach {\bf 0\% of false positive}.
 
 \item We built a custom app using Bluetooth that use out-of-band
   authentication and we applied Proguard transformation on the
@@ -419,8 +424,8 @@ Short-distance Channels}
   \begin{itemize}
 
   \item We implement the attack vector against two real applications:
-    (1) BluetoothChat that use Bluetooth technology, (2) Filesharing
-    on Wi-Fi Direct.
+    (1) {\bf BluetoothChat} that use Bluetooth technology, (2) {\bf
+      Filesharing} on Wi-Fi Direct.
 
   \item Two preliminaries requirements: (1) the malicious app needs to
     recognize the {\bf presence of the target application}. (2) the
@@ -466,12 +471,12 @@ Short-distance Channels}
       vulnerabilities in Android apps}, providing a threat model and
     specific definitions for the problem,
 
-  \item We design an automated system for APK analysis, is a first
-    line of defense against human error, and could be used to identify
-    vulnerable apps.
+  \item {\bf We design an automated system for APK analysis}, is a
+    first line of defense against human error, and could be used to
+    identify vulnerable apps.
 
-  \item We test the efficacy and efficiency of our system against a
-    large number of android apps.
+  \item {\bf We test the efficacy and efficiency of our system}
+    against a large number of android apps.
   
 \end{itemize}
 \end{frame}
