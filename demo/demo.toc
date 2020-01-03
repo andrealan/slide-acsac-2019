@@ -1,6 +1,5 @@
 \beamer@sectionintoc {1}{Introduction}{3}{0}{1}
 \beamer@sectionintoc {2}{CATCH Detection}{9}{0}{2}
 \beamer@sectionintoc {3}{Experimental Evaluation}{15}{0}{3}
-\beamer@sectionintoc {4}{Case Studies}{21}{0}{4}
-\beamer@sectionintoc {5}{Limitations}{23}{0}{5}
-\beamer@sectionintoc {6}{Conclusion}{25}{0}{6}
+\beamer@sectionintoc {4}{Limitations}{22}{0}{4}
+\beamer@sectionintoc {5}{Conclusion}{24}{0}{5}

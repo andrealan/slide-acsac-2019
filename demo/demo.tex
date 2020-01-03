@@ -1,7 +1,8 @@
 \documentclass[10pt]{beamer}
  
-\usetheme{metropolis} 
+\usetheme{metropolis}  
 \usepackage{appendixnumberbeamer}
+%\usepackage[export]{adjustbox}
 
 \usepackage{booktabs} 
 \usepackage[scale=2]{ccicons}
@@ -34,18 +35,23 @@
 \usepackage{xspace}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 
-\title{Detecting (Absent) App-to-app Authentication on Cross-device
+\title{Detecting App-to-app Authentication on Cross-device
   Short-distance Channels}
 \subtitle{ACSAC, December 9-13, 2019 San Juan}
-\date{December 13, 2019}
+\date{December 12, 2019}
 \author{Stefano Cristalli, Danilo Bruschi, Long Lu, Andrea Lanzi}
+ 
 \institute{University of Milan Italy, Northeastern University Boston US}
 \titlegraphic{\hfill
+  \includegraphics[width=.4\textwidth,left]{logoMAE_blu.png}
+%  \includegraphics[width=.2\textwidth,left]{unimi.png}
   \includegraphics[height=1.5cm]{unimi.png}
-   \includegraphics[height=1.5cm]{ne2.png}
- }
+  \includegraphics[height=1.5cm]{ne2.png}
+ 
   
-
+}
+  
+  
 \begin{document}
 
 \maketitle 
@@ -107,12 +113,13 @@
   \begin{itemize}
 
 
-  \item The attacker is able to install a malicious app on the
-    mobile's victim phone.
+  \item The attacker is able to {\bf install a malicious app} on the
+    mobile's victim phone and {\bf detect the running state} of the
+    target application.
 
-  \item The malicious app can therefore craft custom messages to send
-    to the other device, which are displayed as if they were sent from
-    the original app.
+  \item The malicious app can therefore {\bf craft custom messages} to
+    send to the other device, which are displayed as if they were sent
+    from the original app.
 
   \item Depending on the particular context, there are some scenarios
     in which the attack can become very dangerous: {\bf Phishing,
@@ -126,11 +133,11 @@
 \begin{frame}[fragile]{Current Solutions}
   \begin{itemize}
 
-  \item Several solutions exist for securing cross-device
-    communication.  In the Android environment, they allow
-    {\bf authentication of devices and communication channels}.
+ % \item Several solutions exist for securing cross-device
+ %   communication.  In the Android environment, they allow
+ %   {\bf authentication of devices and communication channels}.
 
-  \item Others solutions {\bf restricts apps’ access to external
+  \item Some solutions {\bf restricts apps’ access to external
       resources, such as Bluetooth, SMS and NFC}, by defining new
     SEAndroid types to represent the resources.
 
@@ -408,32 +415,24 @@
     minimal}, that it means that we generally do not miss any
   important information.
   
-\item The average time spent for {\bf modeling the APK in Argus-SAF is
-    5 minutes}, while the {\bf average running time of our algorithm}
-  on the generated graphs is {\bf 2 minutes}, giving a total average
-  {\bf time of 7 minutes}.
   
 \end{itemize}
 
 \end{frame}
 
 
-\section{Case Studies}
-\begin{frame}[fragile]{Data injection on BluetoothChat and Wifi-Direct}
+\begin{frame}[fragile]{Experimental Evaluation}
 
   \begin{itemize}
 
+\item The average time spent for {\bf modeling the APK in Argus-SAF is
+    5 minutes}, while the {\bf average running time of our algorithm}
+  on the generated graphs is {\bf 2 minutes}, giving a total average
+  {\bf time of 7 minutes}.
+    
   \item We implement the attack vector against two real applications:
     (1) {\bf BluetoothChat} that use Bluetooth technology, (2) {\bf
       Filesharing} on Wi-Fi Direct.
-
-  \item Two preliminaries requirements: (1) the malicious app needs to
-    recognize the {\bf presence of the target application}. (2) the
-    malicious app needs to detect when the target {\bf application is
-      opened and run.}
-
-  \item If the attacker has satisfied the previous two requirements
-    the attack can be performed successfully.
 
   \end{itemize}
   
